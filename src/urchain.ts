@@ -69,8 +69,13 @@ export class Urchain {
     return await this._get("health", {});
   }
 
-  async getFeePerKb(): Promise<IFees> {
-    return await this._get("fees", {});
+async getFeePerKb() {
+    const feeData = await axios.get('https://mempool.space/api/v1/fees/recommended');
+    return {
+      "slowFee": feeData.data.hourFee * 1e3,
+      "avgFee": feeData.data.halfHourFee * 1e3,
+      "fastFee": feeData.data.fastestFee * 1e3
+    };
   }
 
   balance(scriptHash: string): Promise<{
