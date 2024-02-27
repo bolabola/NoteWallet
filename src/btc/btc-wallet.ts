@@ -296,7 +296,7 @@ export class BTCWallet extends Wallet {
     //   1000,
     // );
 
-    const estimatedSize = 248;
+    const estimatedSize = 316;
     const realFee = Math.floor((estimatedSize * feeRate) / 1000 + 1);
     const finalTx = createP2TRNotePsbt(
       privateKey,
